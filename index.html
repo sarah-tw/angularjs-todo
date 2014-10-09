@@ -6,11 +6,26 @@
 	<script type="text/javascript" src="angular.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 </head>
-<body ng-app>
-	<h1>Hello {{ myname || "world"}}!</h1>
-	<label>Please input your name:</label>
-	<input ng-model="myname">
+<body ng-app="todoApp">
 
+	<div ng-controller="TodoController">
+		<h1>{{date | date: 'HH:mm'}}</h1>
+		<h2>Good evening, Sarah</h2>
+		<div class="todo-list" ng-show="toggle">
+			<p>{{remaining()}} THINGS TO DO</p>
+			<ul>
+				<li ng-repeat="todo in todos track by $index">
+					<input type="checkbox" ng-model="todo.done" >
+					<label class="done-{{todo.done}}">{{todo.text}}</label>
+				</li>
+			</ul>
+			<form ng-submit="addTodo()">
+				<input ng-model="todoText" placeholder="New todo">
+			</form>
+		</div>
+		<input ng-model="toggle" id="todo" type="checkbox">
+		<label for="todo" class="trigger">Todo</label>
+	</div>
 
 </body>
 </html>
