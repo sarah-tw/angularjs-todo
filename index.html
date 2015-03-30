@@ -7,14 +7,13 @@
 	<script type="text/javascript" src="main.js"></script>
 </head>
 <body ng-app="todoApp">
-
 	<div ng-controller="TodoController">
 		<h1>{{date | date: 'HH:mm'}}</h1>
-		<h2>Good evening, Sarah</h2>
+		<h2>Good afternoon, Sarah</h2>
 		<div class="todo-list" ng-show="toggle">
 			<p>{{remaining()}} THINGS TO DO</p>
 			<ul>
-				<li ng-repeat="todo in todos track by $index">
+				<li ng-repeat="todo in todos | filter: true">
 					<input type="checkbox" ng-model="todo.done" >
 					<label class="done-{{todo.done}}">{{todo.text}}</label>
 				</li>
@@ -26,6 +25,5 @@
 		<input ng-model="toggle" id="todo" type="checkbox">
 		<label for="todo" class="trigger">Todo</label>
 	</div>
-
 </body>
 </html>
